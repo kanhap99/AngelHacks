@@ -4,40 +4,30 @@ if (Meteor.isClient) {
       return TaskList.find();
     }   
   });
-  
   Template.taskList.events({
-    'click .showTask' : function() {
-      var playerID = this._id;
-      Session.set('selectedPlayer',playerID); //Session.set(name_of_session,value passed to session)
+    'click .taskBlock' : function() {
+      var taskID = this._id;
+      Session.set('selectedTask',taskID);  
     },
-    'submit form' : function(event) {
-       event.preventDefault(); //prevents the current event from executing its default functionality
-       var taskName = event.target.name.value;
-       console.log(taskName);
+    'click .remove' : function() {
+      var selectedTask = Session.get('selectedTask');
+      TaskList.remove(selectedTask);
     }
   });
-  
   Template.addTask.events({
     'submit form' : function(event) {
-      event.preventDefault();
+      //event.preventDefault();
       var taskName = event.target.taskName.value;
       var taskDesc = event.target.description.value;
       var hours = event.target.hours.value;
+      var due = event.target.dueDate.value;
       TaskList.insert(
       {
 	NAME : taskName,
-	DATE : new Date().getDate(),
+	DUE : due,
 	DESC : taskDesc,
 	HOURS : hours
       });
-    }   
-  });
-  
-
-  //just rendering template to view current database  
-  Template.viewDB.helpers({
-    doc : function() {
-      return TaskList.find();
     }
   });
 }

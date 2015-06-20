@@ -6,9 +6,15 @@
 #date{
   padding-left:20px
 }
-.showTask, .formSection{
+#slider {
+  padding-right:10px;
+}
+.taskBlock, .formSection{
   background-color:#FDF3E7 ;
   padding-left:20px;
+}
+h1{
+  padding-left: 20px;
 }
 b{
   font-size:25px;
@@ -19,11 +25,17 @@ p{
 ul {
   list-style-type:none;
 }
-li, .formSection {
+.info{
+  padding-bottom: 6px;
+}
+.taskBlock, .formSection {
   color:#D9853B;
   padding-bottom: 10px;
   max-width: 400px;
   min-height: 150px;
+}
+input {
+  autocomplete:"off";
 }
 span{
   color:black;

@@ -7,29 +7,18 @@
   {{> taskList}}
   <br>
   {{> addTask}}
-  <br>
-  {{> viewDB}} <!--Just a small template for viewing the current db entries-->
 </body>
 
 <template name="taskList">
   {{#each task}}
     <ul>
-      <li class="showTask">
+      <li class="taskBlock">
         <b>{{NAME}}</b> 
-	<span id="date">Date:{{DATE}}</span>
-	<br>
-        <span>
-	  <br>
-	  {{DESC}} 
-	  <br>
-	  Recommended Time: {{HOURS}} hours
-	</span>
-	<br>
-	<a href = "#">Delete</a>
-	<ul>
+	<ul style="padding-top:30px">
+	  <li class="info">Due on: {{DUE}}</li>
+	  <li class="info">Recommended Time: {{HOURS}} hours</li>
 	  <li class="info">{{DESC}}</li>
-	  <li class="info">{{DESC}}</li>
-	  <li class="info">{{DESC}}</li>
+	  <input type="button" class="remove" value="Delete Task">
 	</ul>
       </li>
     </ul>
@@ -39,37 +28,22 @@
 <template name="addTask">
   <ul>
   <div class="formSection">
-    <b> Add a task </b>
-      <form name = "addEntry" onsubmit = "return validation();">
-        <input type="text" name="taskName" placeholder="Name">
-        <br> 
-        <input id="content" type="text" name="description" placeholder="Task Description">
-        <br>
-	<input type="range" name="hours" value="1" min="0.25" max="6" step="0.25">
+    <b> Add a task </b> <br><br>
+      <form name = "addEntry">
+        <input type="text" name="taskName" placeholder="Name" required>
+        <br><br> 
+        <input id="content" type="text" name="description" maxlength="500"  placeholder="Task Description">
+       <br><br>
+	Due Date:
+	<br>
+	<input type="date" name="dueDate" required>
+	<br><br>
+	<input type="range" id = "slider" name="hours" value="1" min="0.25" max="6" step="0.25">
+	<label>{{sliderValue}}</label> 
 	<br>
         <input type="submit" value="Add task">
       </form>
   </div>
   </ul>
 </template>
-
-<template name="viewDB">
-  <table>
-    TaskList
-      <tr>
-        <th>ID</th>  
-        <th>Date</th>
-	 <th>Name</th>
-	 <th>Description</th>
-      </tr> 
-    {{#each doc}}
-      <tr>
-      	<td>{{_id}}</td>
-      	<td>{{DATE}}</td>
-        <td>{{NAME}}</td>
-        <td>{{DESC}}</td>
-      </tr>
-    {{/each}}
-  </table>
-</template>
-
+  
