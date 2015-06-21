@@ -1,0 +1,27 @@
+<head></head>
+<body></body>
+
+<template name="entryForm">
+    Hey, welcome to homeroom
+    <br> Sign in below, or create an account 
+    <p>
+      {{> loginButtons}}
+    </p>
+    {{>introForm}}
+</template>
+
+<template name="introForm">
+  {{#if currentUser}}
+    If you are a teacher: <a target = "_blank" href="/teacherForm"><button>Go here --></button></a>
+    <br>
+    If you are a student: <a target = "_blank" href="/studentForm"><button>Go here --></button></a>
+  {{/if}}
+</template>
+
+<template name="teacherForm">
+    Hello, Kanha
+</template>
+
+<template name="studentForm">
+    Hi, fgt
+</template>
